@@ -14,7 +14,7 @@ import {
   QueryDocumentSnapshot,
   QueryConstraint,
 } from 'firebase/firestore';
-import { db } from './firebase';
+import { db, retryFirebaseOperation } from './firebase';
 
 // Types
 export interface ComponentSpec {
