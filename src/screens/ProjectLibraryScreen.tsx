@@ -21,7 +21,7 @@ import {useNavigation} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {Project} from '../services/api';
+import {Project} from '../services/firebaseService';
 import {useProjects} from '../contexts/ProjectContext';
 
 type ProjectStatus = 'saved' | 'in-progress' | 'completed';
