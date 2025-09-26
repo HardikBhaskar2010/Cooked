@@ -7,8 +7,7 @@
     "ios": "react-native run-ios", 
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest",
-    "backend": "cd backend && uvicorn main:app --host 0.0.0.0 --port 8001 --reload"
+    "test": "jest"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.21.0",
@@ -17,7 +16,6 @@
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "@tanstack/react-query": "^5.8.4",
-    "axios": "^1.6.2",
     "firebase": "^10.7.1",
     "react": "18.2.0",
     "react-native": "0.72.7",

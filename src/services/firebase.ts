@@ -2,7 +2,7 @@ import {initializeApp, getApps, FirebaseApp} from 'firebase/app';
 import {getFirestore, Firestore} from 'firebase/firestore';
 import {getAuth, Auth} from 'firebase/auth';
 
-// Firebase configuration
+// Firebase configuration - Updated with your config
 const firebaseConfig = {
   apiKey: "AIzaSyAIV6TBBUlOffZ-WTQENatPFEYKdWiJNYU",
   authDomain: "atl-idea-gen.firebaseapp.com",
@@ -26,5 +26,5 @@ if (getApps().length === 0) {
 db = getFirestore(app);
 auth = getAuth(app);
 
-export { db, auth };
+export { db, auth, firebaseConfig };
 export default app;
