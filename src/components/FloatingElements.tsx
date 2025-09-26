@@ -1,24 +1,45 @@
-"use client";
-
-import React, { useEffect, useRef } from 'react';
-import animejs from 'animejs';
-import { 
-  Cpu, 
-  Zap, 
-  CircuitBoard, 
-  Microchip, 
-  Battery, 
-  Wifi, 
-  Bluetooth,
-  Radio
-} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Animated,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useTheme } from 'react-native-paper';
 
 interface FloatingElementsProps {
-  className?: string;
+  style?: any;
 }
 
-export default function FloatingElements({ className = "" }: FloatingElementsProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+interface FloatingElement {
+  id: number;
+  icon: string;
+  size: number;
+  x: number;
+  y: number;
+  animatedValue: Animated.Value;
+  rotateValue: Animated.Value;
+}
+
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+
+const techIcons = [
+  'memory',
+  'bolt',
+  'developer-board',
+  'computer',
+  'battery-charging-full',
+  'wifi',
+  'bluetooth',
+  'radio',
+  'sensors',
+  'cable',
+];
+
+export default function FloatingElements({ style }: FloatingElementsProps) {
+  const theme = useTheme();
+  const [elements, setElements] = useState<FloatingElement[]>([]);
 
   useEffect(() => {
     if (!containerRef.current) return;
