@@ -140,26 +140,29 @@ const HomeScreen: React.FC = () => {
           Key Features
         </Title>
         {features.map((feature, index) => (
-          <Card
+          <TouchableSparkWrapper
             key={index}
+            onPress={feature.action}
             style={[styles.featureCard, {backgroundColor: theme.colors.surface}]}
-            onPress={feature.action}>
-            <Card.Content>
-              <View style={styles.featureHeader}>
-                <View style={[styles.featureIcon, {backgroundColor: `${feature.color}20`}]}>
-                  <Icon name={feature.icon} size={28} color={feature.color} />
+          >
+            <Card style={styles.cardContent}>
+              <Card.Content>
+                <View style={styles.featureHeader}>
+                  <View style={[styles.featureIcon, {backgroundColor: `${feature.color}20`}]}>
+                    <Icon name={feature.icon} size={28} color={feature.color} />
+                  </View>
+                  <View style={styles.featureContent}>
+                    <Title style={[styles.featureTitle, {color: theme.colors.text}]}>
+                      {feature.title}
+                    </Title>
+                    <Paragraph style={[styles.featureDescription, {color: theme.colors.onSurface}]}>
+                      {feature.description}
+                    </Paragraph>
+                  </View>
                 </View>
-                <View style={styles.featureContent}>
-                  <Title style={[styles.featureTitle, {color: theme.colors.text}]}>
-                    {feature.title}
-                  </Title>
-                  <Paragraph style={[styles.featureDescription, {color: theme.colors.onSurface}]}>
-                    {feature.description}
-                  </Paragraph>
-                </View>
-              </View>
-            </Card.Content>
-          </Card>
+              </Card.Content>
+            </Card>
+          </TouchableSparkWrapper>
         ))}
       </View>
 
