@@ -183,6 +183,16 @@ const ProfileScreen: React.FC = () => {
             <Card.Content style={styles.authButtons}>
               <Button
                 mode="contained"
+                onPress={handleMockLogin}
+                loading={loading}
+                disabled={loading}
+                style={[styles.authButton, {backgroundColor: '#FF6B35'}]}
+                contentStyle={styles.buttonContent}
+                buttonColor="#FF6B35">
+                🎭 Mock Login (Testing)
+              </Button>
+              <Button
+                mode="contained"
                 onPress={() => {
                   setIsSignUp(false);
                   setShowAuth(true);
