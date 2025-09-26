@@ -17,6 +17,7 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string, name: string) => Promise<void>;
   logout: () => Promise<void>;
+  mockLogin: () => Promise<void>;  // Mock login for testing
   isAuthenticated: boolean;
 }
 
