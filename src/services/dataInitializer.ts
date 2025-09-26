@@ -234,7 +234,7 @@ const DEFAULT_COMPONENTS = [
 ];
 
 export const initializeDefaultData = async (): Promise<boolean> => {
-  try {
+  return retryFirebaseOperation(async () => {
     console.log('Checking if default components need to be initialized...');
     
     // Check if components collection has any data
@@ -262,10 +262,7 @@ export const initializeDefaultData = async (): Promise<boolean> => {
       console.log(`ℹ️ Components already exist (${snapshot.size} components found), skipping initialization.`);
       return false;
     }
-  } catch (error) {
-    console.error('❌ Error initializing default data:', error);
-    throw error;
-  }
+  }, 5, 2000); // More retries with longer delay for initialization
 };
 
 export default initializeDefaultData;
