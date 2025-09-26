@@ -126,6 +126,20 @@ function TabNavigator() {
 }
 
 function App(): JSX.Element {
+  // Initialize default data when app starts
+  useEffect(() => {
+    const setupApp = async () => {
+      try {
+        await initializeDefaultData();
+      } catch (error) {
+        console.error('Failed to initialize app data:', error);
+        // App can still function without default data
+      }
+    };
+    
+    setupApp();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <PaperProvider theme={theme}>
