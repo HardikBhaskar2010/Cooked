@@ -156,6 +156,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     signIn,
     signUp,
     logout,
+    mockLogin,
     isAuthenticated: !!user,
   };
 
