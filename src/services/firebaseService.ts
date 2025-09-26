@@ -93,11 +93,11 @@ const docToObject = (doc: QueryDocumentSnapshot<DocumentData>) => ({
 class FirebaseService {
   // Components
   async getComponents(category?: string, search?: string): Promise<Component[]> {
-    try {
+    return retryFirebaseOperation(async () => {
       const componentsCollection = collection(db, 'components');
       const constraints: QueryConstraint[] = [orderBy('created_at', 'desc')];
       
-      if (category) {
+      if (category && category.toLowerCase() !== 'all') {
         constraints.push(where('category', '==', category));
       }
       
@@ -117,10 +117,7 @@ class FirebaseService {
       }
       
       return components;
-    } catch (error) {
-      console.error('Error getting components:', error);
-      throw error;
-    }
+    });
   }
 
   async createComponent(component: ComponentCreate): Promise<Component> {
