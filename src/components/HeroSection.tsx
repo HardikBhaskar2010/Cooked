@@ -1,12 +1,20 @@
-"use client";
-
-import * as React from "react";
-import { Button } from "@/components/ui/button";
-import { BrainCog, Goal, FolderKanban, Rocket, CircuitBoard, WandSparkles } from "lucide-react";
-import { useWindowResize } from "@/hooks/useWindowResize";
-import AnimatedBackground from "./AnimatedBackground";
-import AnimatedTitle from "./AnimatedTitle";
-import FloatingElements from "./FloatingElements";
+import React from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  Surface,
+  Title,
+  Paragraph,
+  Button,
+  useTheme,
+} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export interface HeroSectionProps {
   className?: string;
