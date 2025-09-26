@@ -18,6 +18,7 @@ import {useAuth} from '../contexts/AuthContext';
 import {useComponents} from '../contexts/ComponentContext';
 import {useProjects} from '../contexts/ProjectContext';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import TouchableSparkWrapper from '../components/TouchableSparkWrapper';
 
 const {width} = Dimensions.get('window');
 
