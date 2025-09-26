@@ -26,7 +26,7 @@ import {useProjects} from '../contexts/ProjectContext';
 
 const ProfileScreen: React.FC = () => {
   const theme = useTheme();
-  const {user, isAuthenticated, signIn, signUp, logout} = useAuth();
+  const {user, isAuthenticated, signIn, signUp, logout, mockLogin} = useAuth();
   const {clearInventory, inventory} = useComponents();
   const {savedProjects} = useProjects();
 
