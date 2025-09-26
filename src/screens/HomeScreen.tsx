@@ -321,6 +321,10 @@ const styles = StyleSheet.create({
   },
   quickActionButton: {
     flex: 1,
+    borderRadius: 12,
+  },
+  fullButton: {
+    flex: 1,
   },
   bottomSpacer: {
     height: 32,
