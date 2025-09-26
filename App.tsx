@@ -8,6 +8,9 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import Toast from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+// ClickSpark Animation Provider
+import ClickSparkProvider from './src/components/ClickSparkProvider';
+
 // Screens
 import HomeScreen from './src/screens/HomeScreen';
 import ComponentsScreen from './src/screens/ComponentsScreen';
