@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useState, ReactNode} from 'react';
-import {Component} from '../services/api';
+import {Component} from '../services/firebaseService';
 
 interface ComponentContextType {
   selectedComponents: Component[];
