@@ -8,7 +8,7 @@ import {
   onAuthStateChanged,
   User as FirebaseUser,
 } from 'firebase/auth';
-import {User, apiService} from '../services/api';
+import {User, firebaseService} from '../services/firebaseService';
 
 interface AuthContextType {
   user: User | null;
