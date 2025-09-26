@@ -1,3 +1,15 @@
+import React from 'react';
+import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import {
+  Surface,
+  Title,
+  Paragraph,
+  Button,
+  useTheme,
+  Card,
+} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 const { width } = Dimensions.get('window');
 
 export interface HeroSectionProps {
