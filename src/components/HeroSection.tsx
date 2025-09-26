@@ -1,209 +1,265 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
-import {
-  Surface,
-  Title,
-  Paragraph,
-  Button,
-  useTheme,
-} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+const { width } = Dimensions.get('window');
 
 export interface HeroSectionProps {
-  className?: string;
-  style?: React.CSSProperties;
+  style?: any;
   onGetStarted?: () => void;
 }
 
 const benefits = [
   {
-    icon: BrainCog,
-    title: "AI project suggestions",
-    desc: "Turn your components into smart, build-ready ideas.",
+    icon: 'psychology',
+    title: 'AI project suggestions',
+    desc: 'Turn your components into smart, build-ready ideas.',
+    color: '#6366f1',
   },
   {
-    icon: Goal,
-    title: "Tailored to skill level",
-    desc: "From beginner to advanced, projects match your pace.",
+    icon: 'track-changes',
+    title: 'Tailored to skill level',
+    desc: 'From beginner to advanced, projects match your pace.',
+    color: '#8b5cf6',
   },
   {
-    icon: FolderKanban,
-    title: "Organize and track",
-    desc: "Save, categorize, and refine your project ideas.",
+    icon: 'folder-special',
+    title: 'Organize and track',
+    desc: 'Save, categorize, and refine your project ideas.',
+    color: '#06b6d4',
   },
 ];
 
-export default function HeroSection({ className, style, onGetStarted }: HeroSectionProps) {
-  const windowSize = useWindowResize();
+export default function HeroSection({ style, onGetStarted }: HeroSectionProps) {
+  const theme = useTheme();
 
-  React.useEffect(() => {
-    // Log window resize for debugging
-    console.log('Window resized:', {
-      width: windowSize.width,
-      height: windowSize.height,
-      isMobile: windowSize.isMobile,
-      isTablet: windowSize.isTablet,
-      isDesktop: windowSize.isDesktop
-    });
-  }, [windowSize]);
   return (
-    <section
-      className={`relative w-full bg-background overflow-hidden ${className ?? ""}`}
-      style={style}
-      aria-label="Intro to Atal Idea Generator"
+    <ScrollView 
+      style={[styles.container, { backgroundColor: theme.colors.background }, style]}
+      showsVerticalScrollIndicator={false}
     >
-      {/* Animated Background */}
-      <AnimatedBackground />
-      
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 relative z-10">
-        {/* Floating Tech Elements */}
-        <FloatingElements className="absolute inset-0" />
+      {/* Main Hero Section */}
+      <Surface style={[styles.heroCard, { backgroundColor: theme.colors.surface }]}>
+        <View style={styles.heroContent}>
+          {/* Badge */}
+          <View style={[styles.badge, { backgroundColor: `${theme.colors.primary}20` }]}>
+            <Icon name="auto-awesome" size={16} color={theme.colors.primary} />
+            <Text style={[styles.badgeText, { color: theme.colors.primary }]}>
+              AI-powered STEM projects
+            </Text>
+          </View>
+
+          {/* Title */}
+          <Title style={[styles.heroTitle, { color: theme.colors.text }]}>
+            Turn electronic components into buildable project ideas
+          </Title>
+
+          <Paragraph style={[styles.heroDescription, { color: theme.colors.onSurface }]}>
+            Atal Idea Generator helps you explore, tailor, and organize STEM projects. Add your
+            parts—resistors, sensors, microcontrollers—and instantly get ideas that fit your goals
+            and experience.
+          </Paragraph>
+
+          {/* Get Started Button */}
+          <Button
+            mode="contained"
+            onPress={onGetStarted}
+            style={styles.getStartedButton}
+            contentStyle={styles.buttonContent}
+            icon="rocket-launch"
+          >
+            Get Started
+          </Button>
+
+          {/* Quick Info */}
+          <View style={styles.quickInfo}>
+            <Icon name="memory" size={16} color={theme.colors.onSurface} />
+            <Text style={[styles.quickInfoText, { color: theme.colors.onSurface }]}>
+              No setup needed — just list your components
+            </Text>
+          </View>
+        </View>
+      </Surface>
+
+      {/* Benefits Section */}
+      <View style={styles.benefitsContainer}>
+        <Title style={[styles.sectionTitle, { color: theme.colors.text }]}>
+          Why Choose Atal Ideas?
+        </Title>
         
-        <div className={`grid gap-8 md:gap-12 lg:gap-16 ${windowSize.isMobile ? 'grid-cols-1' : 'md:grid-cols-2'} items-center relative z-20`}>
-          {/* Left: Copy */}
-          <div className="min-w-0">
-            <div className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1.5 text-xs font-semibold text-accent-foreground ring-1 ring-inset ring-border">
-              <WandSparkles className="size-3.5" aria-hidden="true" />
-              <span className="truncate">AI-powered STEM projects</span>
-            </div>
+        {benefits.map((benefit, index) => (
+          <Card 
+            key={index} 
+            style={[styles.benefitCard, { backgroundColor: theme.colors.surface }]}
+          >
+            <Card.Content>
+              <View style={styles.benefitContent}>
+                <View style={[styles.benefitIcon, { backgroundColor: `${benefit.color}20` }]}>
+                  <Icon name={benefit.icon} size={24} color={benefit.color} />
+                </View>
+                <View style={styles.benefitText}>
+                  <Text style={[styles.benefitTitle, { color: theme.colors.text }]}>
+                    {benefit.title}
+                  </Text>
+                  <Text style={[styles.benefitDescription, { color: theme.colors.onSurface }]}>
+                    {benefit.desc}
+                  </Text>
+                </View>
+              </View>
+            </Card.Content>
+          </Card>
+        ))}
+      </View>
 
-            <AnimatedTitle className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-foreground break-words">
-              Turn electronic components into buildable project ideas
-            </AnimatedTitle>
+      {/* Visual Demo Section */}
+      <Surface style={[styles.demoSection, { backgroundColor: theme.colors.surface }]}>
+        <View style={styles.demoContent}>
+          <View style={styles.demoHeader}>
+            <Icon name="rocket-launch" size={20} color={theme.colors.primary} />
+            <Text style={[styles.demoHeaderText, { color: theme.colors.primary }]}>
+              From parts to projects
+            </Text>
+          </View>
+          
+          <View style={styles.exampleBox}>
+            <Text style={[styles.exampleTitle, { color: theme.colors.text }]}>
+              Smart matches from your components
+            </Text>
+            <Text style={[styles.exampleDescription, { color: theme.colors.onSurface }]}>
+              Example: HC-SR04 + Arduino + Buzzer → Parking assist, water level meter, or distance alarm.
+            </Text>
+          </View>
+        </View>
+      </Surface>
 
-            <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
-              Atal Idea Generator helps you explore, tailor, and organize STEM projects. Add your
-              parts—resistors, sensors, microcontrollers—and instantly get ideas that fit your goals
-              and experience.
-            </p>
-
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3">
-              <Button
-                size="lg"
-                onClick={onGetStarted}
-                aria-label="Get started with Atal Idea Generator"
-                className={`${windowSize.isMobile ? 'w-full text-lg py-4' : 'w-full sm:w-auto'} h-14 sm:h-auto text-base rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors touch-manipulation`}
-              >
-                <Rocket className="mr-2 size-5" aria-hidden="true" />
-                Get started
-              </Button>
-
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
-                <CircuitBoard className="size-4" aria-hidden="true" />
-                <span className="min-w-0 truncate">No setup needed — just list your components</span>
-              </div>
-            </div>
-
-            {/* Benefits */}
-            <ul className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:gap-5">
-              {benefits.map((b, i) => {
-                const Icon = b.icon;
-                return (
-                  <li
-                    key={i}
-                    className="group rounded-lg bg-card border border-border p-4 sm:p-5 transition-shadow hover:shadow-sm"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="shrink-0 rounded-md bg-brand-soft text-brand p-2 ring-1 ring-inset ring-border">
-                        <Icon className="size-4" aria-hidden="true" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-sm font-semibold text-foreground leading-6">
-                          {b.title}
-                        </p>
-                        <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                          {b.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {/* Right: Visual */}
-          <div className="relative">
-            <div className="relative rounded-xl bg-card border border-border p-4 sm:p-6 overflow-hidden">
-              {/* Decorative gradient */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl opacity-40"
-                style={{
-                  background:
-                    "radial-gradient(closest-side, var(--color-brand) 0%, transparent 70%)",
-                }}
-              />
-              <div className="relative z-10">
-                <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-                  <Rocket className="size-4 text-brand" aria-hidden="true" />
-                  <span>From parts to projects</span>
-                </div>
-
-                <div className="mt-4 grid grid-cols-3 gap-3">
-                  {/* Image 1 */}
-                  <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden ring-1 ring-inset ring-border">
-                    <img
-                      src="https://images.unsplash.com/photo-1555617981-dac3880b0213?q=80&w=1200&auto=format&fit=crop"
-                      alt="Electronics prototyping board with components"
-                      className="block w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Image 2 */}
-                  <div className="relative rounded-lg overflow-hidden ring-1 ring-inset ring-border">
-                    <img
-                      src="https://images.unsplash.com/photo-1557264337-e8a93017fe92?q=80&w=1200&auto=format&fit=crop"
-                      alt="Robotics and maker tools on a workbench"
-                      className="block w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Image 3 */}
-                  <div className="relative rounded-lg overflow-hidden ring-1 ring-inset ring-border">
-                    <img
-                      src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop"
-                      alt="Microcontroller and wiring close-up"
-                      className="block w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-                {/* Caption card */}
-                <div className="mt-4 sm:mt-5 rounded-lg bg-secondary text-secondary-foreground border border-border p-3">
-                  <div className="flex items-start gap-3">
-                    <div className="shrink-0 rounded-md bg-brand-soft text-brand p-2 ring-1 ring-inset ring-border">
-                      <WandSparkles className="size-4" aria-hidden="true" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold leading-6 text-foreground">
-                        Smart matches from your components
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Example: HC-SR04 + Arduino + Buzzer → Parking assist, water level meter,
-                        or distance alarm.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Subtle shadow lift on hover for the visual block */}
-            <div className="pointer-events-none absolute inset-0 rounded-xl transition duration-300 [box-shadow:0_0_0_0_rgba(0,0,0,0)] hover:[box-shadow:0_24px_48px_-24px_rgba(0,0,0,0.25)]" />
-          </div>
-        </div>
-      </div>
-    </section>
+      <View style={styles.bottomSpacer} />
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  heroCard: {
+    margin: 16,
+    borderRadius: 16,
+    elevation: 4,
+  },
+  heroContent: {
+    padding: 24,
+    alignItems: 'center',
+  },
+  badge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    marginBottom: 16,
+  },
+  badgeText: {
+    fontSize: 12,
+    fontWeight: '600',
+    marginLeft: 6,
+  },
+  heroTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 16,
+    lineHeight: 36,
+  },
+  heroDescription: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 24,
+    lineHeight: 24,
+    paddingHorizontal: 8,
+  },
+  getStartedButton: {
+    marginBottom: 16,
+    borderRadius: 12,
+  },
+  buttonContent: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+  },
+  quickInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  quickInfoText: {
+    fontSize: 12,
+    marginLeft: 6,
+  },
+  benefitsContainer: {
+    margin: 16,
+  },
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  benefitCard: {
+    marginBottom: 12,
+    borderRadius: 12,
+    elevation: 2,
+  },
+  benefitContent: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  benefitIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+  },
+  benefitText: {
+    flex: 1,
+  },
+  benefitTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  benefitDescription: {
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  demoSection: {
+    margin: 16,
+    borderRadius: 16,
+    elevation: 2,
+  },
+  demoContent: {
+    padding: 20,
+  },
+  demoHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  demoHeaderText: {
+    fontSize: 14,
+    fontWeight: '600',
+    marginLeft: 8,
+  },
+  exampleBox: {
+    padding: 16,
+    borderRadius: 12,
+    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+  },
+  exampleTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 8,
+  },
+  exampleDescription: {
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  bottomSpacer: {
+    height: 32,
+  },
+});
