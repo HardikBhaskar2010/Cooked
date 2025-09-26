@@ -1,5 +1,5 @@
 import { collection, getDocs, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from './firebase';
+import { db, retryFirebaseOperation } from './firebase';
 
 // Enhanced default components data
 const DEFAULT_COMPONENTS = [
