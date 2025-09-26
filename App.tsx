@@ -129,44 +129,46 @@ function App(): JSX.Element {
         <AuthProvider>
           <ComponentProvider>
             <ProjectProvider>
-              <NavigationContainer>
-                <StatusBar
-                  barStyle="light-content"
-                  backgroundColor={theme.colors.surface}
-                />
-                <Stack.Navigator
-                  screenOptions={{
-                    headerStyle: {
-                      backgroundColor: theme.colors.surface,
-                    },
-                    headerTintColor: theme.colors.text,
-                    headerTitleStyle: {
-                      fontWeight: 'bold',
-                    },
-                  }}>
-                  <Stack.Screen 
-                    name="Main" 
-                    component={TabNavigator}
-                    options={{headerShown: false}}
+              <ClickSparkProvider>
+                <NavigationContainer>
+                  <StatusBar
+                    barStyle="light-content"
+                    backgroundColor={theme.colors.surface}
                   />
-                  <Stack.Screen 
-                    name="ComponentDetail" 
-                    component={ComponentDetailScreen}
-                    options={{title: 'Component Details'}}
-                  />
-                  <Stack.Screen 
-                    name="ProjectDetail" 
-                    component={ProjectDetailScreen}
-                    options={{title: 'Project Details'}}
-                  />
-                  <Stack.Screen 
-                    name="AddComponent" 
-                    component={AddComponentScreen}
-                    options={{title: 'Add Component'}}
-                  />
-                </Stack.Navigator>
-              </NavigationContainer>
-              <Toast />
+                  <Stack.Navigator
+                    screenOptions={{
+                      headerStyle: {
+                        backgroundColor: theme.colors.surface,
+                      },
+                      headerTintColor: theme.colors.text,
+                      headerTitleStyle: {
+                        fontWeight: 'bold',
+                      },
+                    }}>
+                    <Stack.Screen 
+                      name="Main" 
+                      component={TabNavigator}
+                      options={{headerShown: false}}
+                    />
+                    <Stack.Screen 
+                      name="ComponentDetail" 
+                      component={ComponentDetailScreen}
+                      options={{title: 'Component Details'}}
+                    />
+                    <Stack.Screen 
+                      name="ProjectDetail" 
+                      component={ProjectDetailScreen}
+                      options={{title: 'Project Details'}}
+                    />
+                    <Stack.Screen 
+                      name="AddComponent" 
+                      component={AddComponentScreen}
+                      options={{title: 'Add Component'}}
+                    />
+                  </Stack.Navigator>
+                </NavigationContainer>
+                <Toast />
+              </ClickSparkProvider>
             </ProjectProvider>
           </ComponentProvider>
         </AuthProvider>
