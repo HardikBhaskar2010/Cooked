@@ -101,7 +101,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         email,
       };
       
-      await apiService.createUser(newUser);
+      await firebaseService.createUser(newUser);
     } catch (error: any) {
       console.error('Sign up error:', error);
       throw new Error(error.message || 'Failed to create account');
