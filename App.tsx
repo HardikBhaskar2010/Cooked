@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -7,6 +7,9 @@ import {PaperProvider, DefaultTheme} from 'react-native-paper';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import Toast from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+// Data initialization
+import { initializeDefaultData } from './src/services/dataInitializer';
 
 // ClickSpark Animation Provider
 import ClickSparkProvider from './src/components/ClickSparkProvider';
