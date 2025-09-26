@@ -37,6 +37,26 @@ const ProfileScreen: React.FC = () => {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const handleMockLogin = async () => {
+    setLoading(true);
+    try {
+      await mockLogin();
+      Toast.show({
+        type: 'success',
+        text1: '🎭 Mock Login Success!',
+        text2: 'You are now logged in for testing',
+      });
+    } catch (error: any) {
+      Toast.show({
+        type: 'error',
+        text1: 'Mock Login Failed',
+        text2: error.message,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleAuth = async () => {
     if (!email || !password || (isSignUp && !name)) {
       Toast.show({
