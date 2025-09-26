@@ -276,6 +276,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     elevation: 2,
   },
+  cardContent: {
+    borderRadius: 12,
+  },
   featureHeader: {
     flexDirection: 'row',
     alignItems: 'center',
