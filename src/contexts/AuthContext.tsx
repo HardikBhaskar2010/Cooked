@@ -121,6 +121,34 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     }
   };
 
+  const mockLogin = async (): Promise<void> => {
+    try {
+      setLoading(true);
+      
+      // Create a mock user for testing
+      const mockUser: User = {
+        id: 'mock-user-123',
+        name: 'Test User',
+        email: 'test@atalidea.com',
+        avatar_url: 'https://via.placeholder.com/100/4A90E2/FFFFFF?text=TU',
+      };
+      
+      // Set mock user data
+      setUser(mockUser);
+      
+      // Store mock token
+      await AsyncStorage.setItem('auth_token', 'mock-token-for-testing');
+      await AsyncStorage.setItem('mock_user', JSON.stringify(mockUser));
+      
+      console.log('✅ Mock login successful!');
+    } catch (error: any) {
+      console.error('Mock login error:', error);
+      throw new Error('Failed to mock login');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const value: AuthContextType = {
     user,
     firebaseUser,
