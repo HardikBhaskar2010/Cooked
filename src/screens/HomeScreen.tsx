@@ -172,20 +172,28 @@ const HomeScreen: React.FC = () => {
           Quick Actions
         </Title>
         <View style={styles.quickActionsGrid}>
-          <Button
-            mode="contained"
-            style={[styles.quickActionButton, {backgroundColor: theme.colors.primary}]}
+          <TouchableSparkWrapper
             onPress={() => navigation.navigate('Components' as never)}
-            contentStyle={styles.buttonContent}>
-            Browse Components
-          </Button>
-          <Button
-            mode="outlined"
-            style={styles.quickActionButton}
+            style={[styles.quickActionButton, {backgroundColor: theme.colors.primary}]}
+          >
+            <Button
+              mode="contained"
+              style={styles.fullButton}
+              contentStyle={styles.buttonContent}>
+              Browse Components
+            </Button>
+          </TouchableSparkWrapper>
+          <TouchableSparkWrapper
             onPress={() => navigation.navigate('Generator' as never)}
-            contentStyle={styles.buttonContent}>
-            Generate Ideas
-          </Button>
+            style={styles.quickActionButton}
+          >
+            <Button
+              mode="outlined"
+              style={styles.fullButton}
+              contentStyle={styles.buttonContent}>
+              Generate Ideas
+            </Button>
+          </TouchableSparkWrapper>
         </View>
       </View>
 
