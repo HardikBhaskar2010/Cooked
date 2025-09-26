@@ -9,7 +9,7 @@ import Toast from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Data initialization
-import { initializeDefaultData } from './src/services/dataInitializer';
+import { hybridService } from './src/services/hybridService';
 
 // ClickSpark Animation Provider
 import ClickSparkProvider from './src/components/ClickSparkProvider';
