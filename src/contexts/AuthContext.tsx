@@ -39,7 +39,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
           
           // Try to get user data from our API
           try {
-            const userData = await apiService.getUser(firebaseUser.uid);
+            const userData = await firebaseService.getUser(firebaseUser.uid);
             setUser(userData);
           } catch (error) {
             // If user doesn't exist in our API, create them
