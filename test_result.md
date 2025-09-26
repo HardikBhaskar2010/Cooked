@@ -138,11 +138,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Firebase Integration"
-  stuck_tasks:
-    - "Firebase Integration"
-  test_all: false
-  test_priority: "stuck_first"
+    - "All backend services tested and working"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "completed"
 
 agent_communication:
   - agent: "testing"
