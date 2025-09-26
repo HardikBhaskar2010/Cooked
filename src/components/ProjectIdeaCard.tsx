@@ -14,7 +14,7 @@ import {
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {ProjectIdea} from '../services/api';
+import {ProjectIdea} from '../services/firebaseService';
 
 interface ProjectIdeaCardProps {
   idea: ProjectIdea;
