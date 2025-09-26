@@ -130,10 +130,14 @@ function App(): JSX.Element {
   useEffect(() => {
     const setupApp = async () => {
       try {
-        await initializeDefaultData();
+        console.log('🚀 Initializing Atal Idea Generator...');
+        await hybridService.initializeDefaultData();
+        
+        const status = hybridService.getConnectionStatus();
+        console.log(`📱 App ready! Connection: ${status.isOnline ? 'Firebase' : 'Local Storage'}`);
       } catch (error) {
         console.error('Failed to initialize app data:', error);
-        // App can still function without default data
+        console.log('📱 App will continue with local storage fallback');
       }
     };
     
