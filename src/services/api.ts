@@ -1,11 +1,9 @@
-// This file is now deprecated as we're using Firebase directly
-// All API calls are handled through firebaseService.ts
+// Updated to use hybrid service (Firebase + Local Storage fallback)
+import { hybridService } from './hybridService';
 
-import { firebaseService } from './firebaseService';
-
-// Export Firebase service for backward compatibility
-export const apiService = firebaseService;
-export default firebaseService;
+// Export hybrid service for all API operations
+export const apiService = hybridService;
+export default hybridService;
 
 // Keep types for compatibility
 export interface ComponentSpec {
