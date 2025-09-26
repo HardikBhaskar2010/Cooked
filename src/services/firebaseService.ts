@@ -121,7 +121,7 @@ class FirebaseService {
   }
 
   async createComponent(component: ComponentCreate): Promise<Component> {
-    try {
+    return retryFirebaseOperation(async () => {
       const componentsCollection = collection(db, 'components');
       const docRef = await addDoc(componentsCollection, {
         ...component,
@@ -131,10 +131,7 @@ class FirebaseService {
       
       const docSnap = await getDoc(docRef);
       return { id: docRef.id, ...docSnap.data() } as Component;
-    } catch (error) {
-      console.error('Error creating component:', error);
-      throw error;
-    }
+    });
   }
 
   async getComponent(id: string): Promise<Component> {
