@@ -181,3 +181,20 @@ user_instructions:
       }
     }
     Then click "Publish"
+
+web_version_ready: |
+  WEB VERSION ADDED: 
+  - npm run dev (starts web version at http://localhost:3000)
+  - Full React Native app converted to web using React Native Web
+  - Same functionality as mobile version 
+  - Mock login button available for testing
+  - Webpack dev server with hot reload
+  - Minor icon warnings (expected, app still functional)
+
+testing_commands: |
+  # For Web Testing (Easiest)
+  npm run dev      # Start at http://localhost:3000
+  
+  # For Mobile Testing  
+  npm start        # Start Metro bundler
+  npm run android  # Run on Android
