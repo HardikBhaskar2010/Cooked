@@ -184,20 +184,18 @@ The Atal Idea Generator is now a **pure React Native mobile application** that u
 
 ### Development Commands
 ```bash
-# Start Metro bundler
-yarn start
+# Web development (recommended for testing)
+npm run dev          # Start web version at http://localhost:3000
 
-# Run on Android emulator/device
-yarn android
+# React Native mobile
+npm start            # Start Metro bundler  
+npm run android      # Run on Android emulator/device
+npm run ios          # Run on iOS simulator/device
 
-# Run on iOS simulator/device  
-yarn ios
-
-# Run tests
-yarn test
-
-# Check code style
-yarn lint
+# Building
+npm run build        # Build web version for production
+npm test             # Run tests
+npm run lint         # Check code style
 ```
 
 ### Debugging
