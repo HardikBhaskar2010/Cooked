@@ -3,71 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const appDirectory = path.resolve(__dirname);
 
-const babelLoaderConfiguration = {
-  test: /\.js$/,
-  // Add every directory that needs to be compiled by Babel during the build
-  include: [
-    path.resolve(appDirectory, 'index.web.js'), // Entry to your application
-    path.resolve(appDirectory, 'src'), // Source code
-    path.resolve(appDirectory, 'App.tsx'), // App component
-    path.resolve(appDirectory, 'node_modules/react-native-vector-icons'),
-    path.resolve(appDirectory, 'node_modules/react-native-safe-area-context'),
-    path.resolve(appDirectory, 'node_modules/react-native-screens'),
-  ],
-  use: {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-      presets: ['@babel/preset-react', '@babel/preset-env'],
-      plugins: [
-        '@babel/plugin-proposal-class-properties',
-        '@babel/plugin-transform-runtime'
-      ]
-    }
-  }
-};
-
-const tsLoaderConfiguration = {
-  test: /\.(ts|tsx)$/,
-  exclude: /node_modules/,
-  use: {
-    loader: 'ts-loader',
-    options: {
-      configFile: path.resolve(appDirectory, 'tsconfig.json')
-    }
-  }
-};
-
-const svgLoaderConfiguration = {
-  test: /\.svg$/,
-  use: [
-    {
-      loader: '@svgr/webpack',
-    },
-  ],
-};
-
-const imageLoaderConfiguration = {
-  test: /\.(gif|jpe?g|png|svg)$/,
-  use: {
-    loader: 'file-loader',
-    options: {
-      name: '[name].[ext]'
-    }
-  }
-};
-
-const fontLoaderConfiguration = {
-  test: /\.ttf$/,
-  use: {
-    loader: 'file-loader',
-    options: {
-      name: '[name].[ext]',
-      outputPath: 'fonts/'
-    }
-  }
-};
-
 module.exports = {
   entry: path.resolve(appDirectory, 'index.web.js'),
   output: {
@@ -78,18 +13,51 @@ module.exports = {
   resolve: {
     alias: {
       'react-native$': 'react-native-web',
-      'react-native-svg': 'react-native-svg-web',
-      'react-native-vector-icons/MaterialIcons': 'react-native-vector-icons/dist/MaterialIcons',
     },
     extensions: ['.web.js', '.web.ts', '.web.tsx', '.js', '.ts', '.tsx', '.json'],
   },
   module: {
     rules: [
-      babelLoaderConfiguration,
-      tsLoaderConfiguration,
-      imageLoaderConfiguration,
-      fontLoaderConfiguration,
-      svgLoaderConfiguration
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
+        exclude: /node_modules\/(?!(react-native|@react-native|react-native-web|react-native-vector-icons|react-native-paper|react-native-safe-area-context|react-native-screens|react-native-toast-message|react-native-svg|react-native-reanimated|react-native-gesture-handler|@react-navigation|@tanstack)\/).*/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: { node: 'current' } }],
+              '@babel/preset-react',
+              '@babel/preset-typescript'
+            ],
+            plugins: [
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-transform-runtime'
+            ]
+          }
+        }
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.ttf$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/'
+          }
+        }
+      }
     ]
   },
   plugins: [
@@ -104,7 +72,9 @@ module.exports = {
     historyApiFallback: true,
     port: 3000,
     open: true,
-    hot: true
+    hot: true,
+    compress: true
   },
-  mode: 'development'
+  mode: 'development',
+  devtool: 'source-map'
 };
