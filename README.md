@@ -35,29 +35,38 @@ The Atal Idea Generator is now a **pure React Native mobile application** that u
 
 ### Prerequisites
 - Node.js 16+
-- React Native development environment
+- React Native development environment (for mobile testing)
 - Android Studio (for Android) or Xcode (for iOS)
+- **Web Browser** (for web testing)
 
 ### Installation & Setup
 
 1. **Install Dependencies**
    ```bash
-   yarn install
+   npm install --legacy-peer-deps
    ```
 
-2. **Start React Native Metro**
+2. **For Web Testing (Easy Testing)**
    ```bash
-   yarn start
+   npm run dev
    ```
+   This will start the web version at `http://localhost:3000`
 
-3. **Run on Device/Emulator**
+3. **For React Native Mobile (Original)**
    ```bash
-   # For Android
-   yarn android
+   # Start Metro bundler
+   npm start
    
-   # For iOS
-   yarn ios
+   # In another terminal, run on device/emulator
+   npm run android  # or npm run ios
    ```
+
+### 🌐 Web Version Features
+- **Full app functionality** accessible via web browser
+- **Mock login button** for easy testing (orange button)
+- **Firebase integration** works the same as mobile
+- **Responsive design** that adapts to browser window
+- **Hot reload** for development
 
 ## 📦 Project Structure
 
